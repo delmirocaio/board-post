@@ -1,3 +1,5 @@
+const { insertPost, listPosts } = require("../database/board-repository");
+
 module.exports = {
     posts: [
         {
@@ -8,11 +10,11 @@ module.exports = {
     ],
 
     getAll(){
-        return this.posts;
+        return listPosts();
     },
 
     newPost(title, description){
-        this.posts.push({
+        insertPost({
             id: generateID(),
             title,
             description
