@@ -13,6 +13,7 @@ function updatePosts(){
         posts.forEach((post) => {
             let postElement = `<div id=${post.id} class="card mb-4">
                                 <div class="card-header">
+                                    <button type="button" class="btn-close" aria-label="Close" onclick="deletar()">X</button>
                                     <h5 class="card-title">${post.title}</h5>
                                 </div>
 
@@ -55,4 +56,7 @@ function newPost(){
     })
 }
 
-//usar o fetch pra fazer a chamada no back-end para buscar todos os posts já cirados 
+function deletar(){
+
+
+}

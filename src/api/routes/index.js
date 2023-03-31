@@ -27,4 +27,8 @@ router.post("/new", bodyParser.json(), (req, res) => {
     res.send("Post adicionado com sucesso!")
 });
 
+router.delete("/:id", (req, res) => {
+
+});
+
 module.exports = router;
