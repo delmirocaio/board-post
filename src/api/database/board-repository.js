@@ -9,9 +9,13 @@ async function insertPost({id, title, description}) {
 }
 
 async function listPosts(){
-    
     return await client.collection("post-board").find({}).toArray(); 
-
 }
 
-module.exports = {insertPost, listPosts};
+async function removePost({ id }){
+    return await client.collection("post-board").deleteOne({
+        id
+    })
+}
+
+module.exports = {insertPost, listPosts, removePost};

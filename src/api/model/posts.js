@@ -1,4 +1,4 @@
-const { insertPost, listPosts } = require("../database/board-repository");
+const { insertPost, listPosts, removePost } = require("../database/board-repository");
 
 module.exports = {
     posts: [
@@ -22,7 +22,10 @@ module.exports = {
     },
 
     deletePost(id){
-    
+        console.log('deletePost: ', id)
+        removePost({
+            id
+        });
     }
 }
 

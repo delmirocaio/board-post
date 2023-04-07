@@ -11,24 +11,24 @@ const options = {
 }
 
 router.use(cors());
+router.use(bodyParser.json());
 
-router.get("/all", async (req, res) => {
-    
-    res.json(JSON.stringify(await posts.getAll()))
-    
+router.get("/blog", async (req, res) => {
+    return res.json(JSON.stringify(await posts.getAll()))
 });
 
-router.post("/new", bodyParser.json(), (req, res) => {
-    let title = req.body.title;
-    let description = req.body.description;
+router.post("/blog", (req, res) => {
+    const { title, description } = req.body;
 
-    posts.newPost(title,description);
+    const result = posts.newPost(title, description);
 
-    res.send("Post adicionado com sucesso!")
+    return res.json(result);
 });
 
-router.delete("/:id", (req, res) => {
-
+router.delete("/blog/:id", (req, res) => {
+    const { id } = req.params;
+    posts.deletePost(id)
+    return res.status(204).send();
 });
 
 module.exports = router;
