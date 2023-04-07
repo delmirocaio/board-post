@@ -2,15 +2,20 @@ const { Router } = require('express');
 const router = Router();
 
 const posts = require('../model/posts');
+const blogService = require('./blog-service');
+
+
 
 router.get("/", async (req, res) => {
-    return res.json(JSON.stringify(await posts.getAll()))
+    const { id_user } = req.query;
+    const listOfPosts = await blogService.listPost(id_user);
+    return res.json(listOfPosts)
 });
 
 router.post("/", (req, res) => {
     const { title, description } = req.body;
-
-    const result = posts.newPost(title, description);
+    const { id_user } = req.headers;
+    const result = posts.newPost(id_user, title, description);
 
     return res.json(result);
 });

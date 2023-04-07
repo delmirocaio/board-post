@@ -1,15 +1,19 @@
 const client = require('./connection');
 
-async function insertPost({id, title, description}) {
+async function insertPost({id, title, description, id_user}) {
+    console.log({id_user})
     return await client.collection("post-board").insertOne({
         id,
         title,
-        description
+        description,
+        relation_id: id_user,
     })
 }
 
-async function listPosts(){
-    return await client.collection("post-board").find({}).toArray(); 
+async function listPosts(id_user){
+    return await client.collection("post-board").find({
+        relation_id: id_user,
+    }).toArray(); 
 }
 
 async function removePost({ id }){

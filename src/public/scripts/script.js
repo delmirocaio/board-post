@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function updatePosts(){
-    fetch("http://localhost:3000/api/blog").then(res => {
+    fetch("http://localhost:3000/api/blog?id_user=JOAO1&adminCode=123", {
+        headers: new Headers({
+            'content-type': 'application/json',
+        })
+    }).then(res => {
         return res.json()
     }).then(json => {
         
@@ -41,12 +45,13 @@ function newPost(){
     const options = {
         method: "POST",
         headers: new Headers({
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'id_user': 'JOAO3'
         }),
         body: JSON.stringify(post)
     }
 
-    fetch("http://localhost:3000/api/blog", options).then(res => {
+    fetch("http://localhost:3000/api/blog?adminCode=123", options).then(res => {
         console.log(res);
 
         updatePosts();
@@ -61,11 +66,12 @@ function deletar(id){
     const options = {
         method: "DELETE",
         headers: new Headers({
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'id_user': 'JOAO3'
         })
     }
 
-    fetch(`http://localhost:3000/api/blog/${id}`, options).then(res => res);
+    fetch(`http://localhost:3000/api/blog/${id}?adminCode=123`, options).then(res => res);
 
     document.getElementById(id).remove();
 }

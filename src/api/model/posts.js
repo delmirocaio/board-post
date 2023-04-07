@@ -9,15 +9,17 @@ module.exports = {
         }
     ],
 
-    getAll(){
-        return listPosts();
+    getAll(id_user){
+        return listPosts(id_user);
     },
 
-    newPost(title, description){
+    newPost(id_user, title, description){
+        
         insertPost({
             id: generateID(),
             title,
-            description
+            description,
+            id_user,
         })
     },
 
