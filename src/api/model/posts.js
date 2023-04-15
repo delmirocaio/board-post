@@ -1,4 +1,4 @@
-const { insertPost, listPosts, removePost } = require("../database/board-repository");
+const { insertPost, listPosts, removePost, returnAllPosts } = require("../database/board-repository");
 
 module.exports = {
     posts: [
@@ -28,7 +28,11 @@ module.exports = {
         removePost({
             id
         });
-    }
+    },
+
+    returnAllPosts(){
+        console.log("todos os docs retornados!")
+    }    
 }
 
 function generateID(){

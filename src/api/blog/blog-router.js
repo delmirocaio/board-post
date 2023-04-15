@@ -3,12 +3,21 @@ const router = Router();
 
 const posts = require('../model/posts');
 const blogService = require('./blog-service');
+const { celebrate, Joi, Segments } = require('celebrate');
+
+const posts = require('../model/posts');
+const blogService = require('./blog-service');
 
 
-
-router.get("/", async (req, res) => {
+router.get("/", celebrate({
+    [Segments.QUERY]: {
+        id_user: Joi.string().optional(),
+        adminCode: Joi.string().required()
+    },
+}),async (req, res) => {
     const { id_user } = req.query;
     const listOfPosts = await blogService.listPost(id_user);
+
     return res.json(listOfPosts)
 });
 
@@ -23,6 +32,7 @@ router.post("/", (req, res) => {
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     posts.deletePost(id)
+    
     return res.status(204).send();
 });
 
