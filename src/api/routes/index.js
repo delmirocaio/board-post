@@ -9,10 +9,10 @@ const options = {
     origin: "http://localhost:3000" //aqui é onde eu faço a minha whitelist de sites que podem fazer requisições no meu servidor
 }
 
-const isAdmin = (req,res,next) => {
+const isAdmin = (req,res,next) => { //idAdmin é um middleware
     const { adminCode } = req.query;
     if(adminCode == ADMIN_AUTHORIZED_CODE){
-        return next();
+        return next(); //isso é um método para executar o próximo middleware ou rota.
     }
     return res.send('Você não é um administrador!')
 }

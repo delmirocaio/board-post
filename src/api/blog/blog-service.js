@@ -10,6 +10,6 @@ module.exports = {
     listPost: async (id_user) => {
         console.log(id_user)
         const result = await posts.getAll(id_user);
-        return JSON.stringify(result);
+        return result;
     }
 }

@@ -22,4 +22,8 @@ async function removePost({ id }){
     })
 }
 
-module.exports = {insertPost, listPosts, removePost};
+async function returnAllPosts(){
+    return await client.collection("post-board").find({}).toArray();
+}
+
+module.exports = {insertPost, listPosts, removePost, returnAllPosts};

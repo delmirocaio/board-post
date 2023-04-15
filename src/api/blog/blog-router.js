@@ -9,6 +9,7 @@ const blogService = require('./blog-service');
 router.get("/", async (req, res) => {
     const { id_user } = req.query;
     const listOfPosts = await blogService.listPost(id_user);
+
     return res.json(listOfPosts)
 });
 
@@ -23,6 +24,7 @@ router.post("/", (req, res) => {
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     posts.deletePost(id)
+    
     return res.status(204).send();
 });
 
