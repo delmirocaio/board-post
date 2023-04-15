@@ -1,4 +1,4 @@
-const { insertPost, listPosts, removePost, returnAllPosts } = require("../database/board-repository");
+const { insertPost, listPosts, removePost, returnAllPosts } = require("../repositories/board-repository");
 
 module.exports = {
     posts: [
@@ -14,7 +14,6 @@ module.exports = {
     },
 
     newPost(id_user, title, description){
-        
         insertPost({
             id: generateID(),
             title,

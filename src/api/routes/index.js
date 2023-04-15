@@ -1,23 +1,10 @@
 const { Router } = require('express');
-const router = Router();
 const bodyParser = require('body-parser');
 
-const blogRoute = require('../blog/blog-router');
-const ADMIN_AUTHORIZED_CODE = 123;
-
-const options = {
-    origin: "http://localhost:3000" //aqui é onde eu faço a minha whitelist de sites que podem fazer requisições no meu servidor
-}
-
-const isAdmin = (req,res,next) => { //idAdmin é um middleware
-    const { adminCode } = req.query;
-    if(adminCode == ADMIN_AUTHORIZED_CODE){
-        return next(); //isso é um método para executar o próximo middleware ou rota.
-    }
-    return res.send('Você não é um administrador!')
-}
+const router = Router();
+const { isAdmin } = require('./middlewares/adminValidateMiddleware');
+const blogRoute = require('../modules/blog/blog-router');
 
 router.use(bodyParser.json());
 router.use('/blog', isAdmin, blogRoute)
-
 module.exports = router;

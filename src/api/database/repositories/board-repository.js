@@ -1,4 +1,4 @@
-const client = require('./connection');
+const client = require('../connection');
 
 async function insertPost({id, title, description, id_user}) {
     console.log({id_user})

@@ -36,6 +36,37 @@ base: /blog
             description: 'example', 
             relation_id: 'EXAMPLE123'
             }]
+    },
+    {
+        path: "/"
+        method: POST
+        name: Create Post
+        request:{
+            body: {
+                title: "string",
+                description: "string",
+            },
+            headers: {
+                id_user: "EXAMPLE123"
+            }
+        }
+        response: {
+            id:'EXAMPLE123', 
+            title: 'example', 
+            description: 'example', 
+            relation_id: 'EXAMPLE123'
+        }
+    },
+    {
+        path: "/:id"
+        method: DELETE
+        name: Delete Post By ID
+        request:{
+            params: {
+                id: "string"
+            }
+        }
+        response: no_response
     }
 ]
 

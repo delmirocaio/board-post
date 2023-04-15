@@ -1,4 +1,4 @@
-const posts = require('../model/posts');
+const posts = require('../../database/model/posts');
 
 module.exports = {
     removePost: (id, id_user) => {
@@ -8,7 +8,6 @@ module.exports = {
 
     },
     listPost: async (id_user) => {
-        console.log(id_user)
         const result = await posts.getAll(id_user);
         return result;
     }
